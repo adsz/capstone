@@ -1,7 +1,7 @@
 setup:
 
 	python -m venv ~/.capstone
-	source ~/.capstone/Scripts/activate
+	source ~/.capstone/bin/activate
 
 install:
 	pip install --upgrade pip &&\
