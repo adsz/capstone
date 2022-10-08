@@ -9,7 +9,7 @@ jobs:
     parameters:
       cluster-name:
         description: |
-          Capstone Cluster
+          Capstone cluster
         type: string
     steps:
       - kubernetes/install:
