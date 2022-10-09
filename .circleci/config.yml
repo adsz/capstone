@@ -17,8 +17,7 @@ jobs:
                 command: |
                     uname -a
                     cat /etc/issue
-                    sudo apt update
-                    sudo apt install -y make
+                    sudo apt-get install -y make
                     python3 -m venv ~/.capstone
                     source ~/.capstone/bin/activate
                     make install
