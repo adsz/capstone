@@ -7,12 +7,14 @@ setup:
 
 install:
 	pip install --upgrade pip &&\
-		pip3 install -r requirements.txt
+	
+		pip install -r requirements.txt
+		
 
 test:
 
 lint:
-
+	source ~/.capstone/bin/activate
 	hadolint Dockerfile
 	pylint --disable=R,C,W1203,W1202 app.py
 
