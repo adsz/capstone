@@ -89,7 +89,7 @@ jobs:
 #           command: |
 #             kubectl get services
 #           name: Test cluster
-# workflows:
+workflows:
     hadolint:
       jobs:
         - lint
