@@ -6,7 +6,7 @@ jobs:
     lint:
         docker:
             # Use the same Docker base as the project 
-            - image: python:3.10-slim-bullseye
+            - image: docker:python:3.10-slim-bullseye
 
         working_directory: ~/capstone
 
