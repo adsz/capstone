@@ -15,6 +15,8 @@ jobs:
             - run:
                 name: install dependencies
                 command: |
+                    uname -a
+                    cat /etc/issue
                     apt install -y make
                     python3 -m venv ~/.capstone
                     source ~/.capstone/bin/activate
