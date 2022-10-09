@@ -15,6 +15,7 @@ jobs:
             - run:
                 name: install dependencies
                 command: |
+                    apk add -u make
                     python3 -m venv ~/.capstone
                     source ~/.capstone/bin/activate
                     make install
