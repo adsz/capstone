@@ -15,8 +15,6 @@ jobs:
             - run:
                 name: install dependencies
                 command: |
-                    uname -a
-                    cat /etc/issue
                     apt update
                     apt install -y make wget curl pylint
                     python3 -m venv ~/.capstone
@@ -30,6 +28,7 @@ jobs:
                 name: run lint
                 command: |
                     . ~/.capstone/bin/activate
+                    cd  ~/.capstone
                     make lint 
 
 
