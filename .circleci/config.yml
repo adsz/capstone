@@ -90,6 +90,9 @@ jobs:
 #             kubectl get services
 #           name: Test cluster
 # workflows:
+    hadolint:
+      jobs:
+        - lint
 #   deployment:
 #     jobs:
 #       - aws-eks/create-cluster:
