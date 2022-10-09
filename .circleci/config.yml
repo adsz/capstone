@@ -18,7 +18,7 @@ jobs:
                     uname -a
                     cat /etc/issue
                     apt update
-                    apt install -y make wget curl pylint python-matplotlib
+                    apt install -y make wget curl pylint
                     python3 -m venv ~/.capstone
                     source ~/.capstone/bin/activate
                     make install
