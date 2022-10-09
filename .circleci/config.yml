@@ -29,7 +29,8 @@ jobs:
                 command: |
                     source ~/.capstone/bin/activate
                     cd  ~/.capstone
-                    ls -l 
+                    ls -la 
+                    pwd
                     make lint 
 
 
