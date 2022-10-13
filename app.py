@@ -1,7 +1,3 @@
-"""
-Tiny hello world service example
-"""
-
 import os
 from flask import Flask
 
