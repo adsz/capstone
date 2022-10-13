@@ -21,7 +21,10 @@ jobs:
                     # source ~/.capstone/bin/activate
                     # make install
                     # Install hadolint
+                    no_output_timeout: 30m
                     wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v2.10.0/hadolint-Linux-x86_64
+                    echo "OK"
+                    ls -l /bin/hadolint
                     chmod +x /bin/hadolint
                     /bin/bash
                     make all
