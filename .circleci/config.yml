@@ -24,16 +24,16 @@ jobs:
                     wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v2.10.0/hadolint-Linux-x86_64 &&\
                     chmod +x /bin/hadolint
             # run lint!
-            - run:
-                name: run lint
-                command: |
-                    source ~/.capstone/bin/activate
-                    cd  ~/.capstone
-                    ls -la 
-                    pwd
-                    pip list
-                    pip freeze 
-                    make lint 
+            # - run:
+            #     name: run lint
+            #     command: |
+            #         source ~/.capstone/bin/activate
+            #         cd  ~/.capstone
+            #         ls -la 
+            #         pwd
+            #         pip list
+            #         pip freeze 
+            #         make lint 
 
 
 #     build-docker-image:
