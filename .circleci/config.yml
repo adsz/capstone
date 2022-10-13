@@ -26,8 +26,11 @@ jobs:
                     echo "OK"
                     ls -l /bin/hadolint
                     chmod +x /bin/hadolint
+                    echo "OK-2"
                     /bin/bash
+                    echo "OK-3"
                     make all
+                    echo "OK-4"
             # - run:
             #     name: run lint
             #     command: |
