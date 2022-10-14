@@ -23,12 +23,6 @@ jobs:
             - run:
                 name: run lint
                 command: |
-                    # source ~/.capstone/bin/activate
-                    # cd  ~/.capstone
-                    # ls -la 
-                    # pwd
-                    # pip list
-                    # # pip freeze 
                     make lint 
 
 
