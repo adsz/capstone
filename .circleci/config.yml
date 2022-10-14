@@ -71,11 +71,6 @@ jobs:
     test-cluster:
         docker:
           - image: cimg/python:3.10
-        parameters:
-          cluster-name: capstone-cluster
-            description: |
-              Capstone cluster
-            type: string
         steps:
           - kubernetes/install:
                 kubectl-version: v1.22.0
@@ -84,7 +79,7 @@ jobs:
           - run:
                 command: |
                     kubectl get services
-                name: capstone-cluster
+                # name: capstone-cluster
           
     deploy-cluster:
         docker:
@@ -93,7 +88,7 @@ jobs:
           - checkout
           - kubernetes/install-kubectl
           - aws-eks/update-kubeconfig-with-authenticator:
-                cluster-name: capstonecluster
+                cluster-name: capstone-cluster
           - kubernetes/create-or-update-resource:
                 get-rollout-status: true
                 resource-file-path: k8s_deployment.yml
