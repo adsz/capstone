@@ -60,8 +60,8 @@ jobs:
               command: |
                 echo "Docker ID and Image: "capstone"
                 docker login -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD"
-                docker tag "capstone" $DOCKERHUB_USERNAME/capstone:stable
-                docker push $DOCKERHUB_USERNAME/capstone:stable  
+                docker tag "capstone" $DOCKERHUB_USERNAME/"capstone":stable
+                docker push $DOCKERHUB_USERNAME/"capstone":stable  
 # jobs:
 #   test-cluster:
 #     docker:
