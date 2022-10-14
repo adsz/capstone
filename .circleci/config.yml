@@ -46,27 +46,22 @@ jobs:
                     docker build --tag=capstone . --no-cache
                     docker image ls
 
-#     upload-docker:
-#         docker:
-#           - image: docker:17.05.0-ce-git
+    upload-docker:
+        docker:
+          - image: cimg/base:current
     
-#         working_directory: ~/repo
+        working_directory: ~/capstone
     
-#         steps:
-#           - checkout
+        steps:
+          - checkout
     
-#           - setup_remote_docker:
-#                 version: 20.10.14
-#                 docker_layer_caching: true
-
-    
-#           - run:
-#               name: Upload Docker to Dockerhub
-#               command: |
-#                 echo "Docker ID and Image: $DOCKER_IMAGE_NAME"
-#                 docker login -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD"
-#                 docker tag $DOCKER_IMAGE_NAME $DOCKERHUB_USERNAME/$DOCKER_IMAGE_NAME:stable
-#                 docker push $DOCKERHUB_USERNAME/$DOCKER_IMAGE_NAME:stable  
+          - run:
+              name: Upload Docker to Dockerhub
+              command: |
+                echo "Docker ID and Image: "capstone"
+                docker login -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD"
+                docker tag "capstone" $DOCKERHUB_USERNAME/capstone:stable
+                docker push $DOCKERHUB_USERNAME/capstone:stable  
 # jobs:
 #   test-cluster:
 #     docker:
@@ -90,6 +85,7 @@ workflows:
       jobs:
         - lint
         - build-docker-image
+        - upload-docker
 #   deployment:
 #     jobs:
 #       - aws-eks/create-cluster:
