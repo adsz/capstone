@@ -88,6 +88,7 @@ workflows:
         - lint
         - build-docker-image
         - upload-docker
+            requires: [build-docker-image]
 #   deployment:
 #     jobs:
 #       - aws-eks/create-cluster:
