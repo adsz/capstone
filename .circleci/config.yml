@@ -59,6 +59,7 @@ jobs:
               name: Upload Docker to Dockerhub
               command: |
                 docker image ls 
+                ls -l 
                 echo "Docker ID and Image: capstone"
                 docker login -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD"
                 docker tag "capstone" $DOCKERHUB_USERNAME/"capstone":stable
