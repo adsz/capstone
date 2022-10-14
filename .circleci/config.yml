@@ -26,26 +26,25 @@ jobs:
                     make lint 
 
 
-#     build-docker-image:
-#         docker:
-#             # Use the same Docker base as the project 
-#             - image: docker:17.05.0-ce-git
+    build-docker-image:
+        docker:
+            # Use the same Docker base as the project 
+            - image: python:3.10-slim-bullseye
         
-#         working_directory: ~/repo
+        working_directory: ~/capstone
 
-#         steps:
-#             - checkout
+        steps:
+            - checkout
             
-#             - setup_remote_docker:
-#                 version: 20.10.14
-#                 docker_layer_caching: true
+            - setup_remote_docker:
+                version: 20.10.14
+                docker_layer_caching: true
 
-#             # run lint!
-#             - run:
-#                 name: Build docker container
-#                 command: |
-#                     docker build --tag=$DOCKER_IMAGE_NAME . --no-cache
-#                     docker image ls
+            - run:
+                name: Build docker image
+                command: |
+                    docker build --tag=capstone . --no-cache
+                    docker image ls
 
 #     upload-docker:
 #         docker:
@@ -90,6 +89,7 @@ workflows:
     hadolint:
       jobs:
         - lint
+        - build-docker-image
 #   deployment:
 #     jobs:
 #       - aws-eks/create-cluster:
