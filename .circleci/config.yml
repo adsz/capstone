@@ -72,7 +72,7 @@ jobs:
         docker:
           - image: cimg/python:3.10
         parameters:
-          cluster-name:
+          cluster-name: capstone-cluster
             description: |
               Capstone cluster
             type: string
@@ -84,7 +84,7 @@ jobs:
           - run:
                 command: |
                     kubectl get services
-                name: Test cluster
+                name: capstone-cluster
           
     deploy-cluster:
         docker:
