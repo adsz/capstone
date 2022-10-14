@@ -17,30 +17,19 @@ jobs:
                 command: |
                     apt update
                     apt install -y make wget curl pylint
-                    # python3 -m venv ~/.capstone
-                    # source ~/.capstone/bin/activate
-                    # make install
-                    # Install hadolint
-                    # no_output_timeout: 30m
                     wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v2.10.0/hadolint-Linux-x86_64
-                    echo "OK"
-                    ls -l /bin/hadolint
                     chmod +x /bin/hadolint
-                    echo "OK-2"
-                    # /bin/bash
-                    echo "OK-3"
-                    make all
-                    echo "OK-4"
-            # - run:
-            #     name: run lint
-            #     command: |
-            #         source ~/.capstone/bin/activate
-            #         cd  ~/.capstone
-            #         ls -la 
-            #         pwd
-            #         pip list
-            #         # pip freeze 
-            #         make lint 
+                    make install
+            - run:
+                name: run lint
+                command: |
+                    # source ~/.capstone/bin/activate
+                    # cd  ~/.capstone
+                    # ls -la 
+                    # pwd
+                    # pip list
+                    # # pip freeze 
+                    make lint 
 
 
 #     build-docker-image:
