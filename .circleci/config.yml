@@ -83,8 +83,8 @@ jobs:
                 cluster-name: capstone-cluster
           - run:
                 command: |
-                kubectl get services
-        name: Test cluster
+                    kubectl get services
+                name: Test cluster
           
     deploy-cluster:
         docker:
@@ -112,7 +112,6 @@ workflows:
                 requires: [build-docker-image]
           - test-cluster:
                 requires: [upload-docker]
-            
           - deploy-cluster:
                 requires: [test-cluster]
                 
