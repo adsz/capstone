@@ -87,7 +87,7 @@ workflows:
       jobs:
         - lint
         - build-docker-image
-        - upload-docker
+        - upload-docker:
             requires: [build-docker-image]
 #   deployment:
 #     jobs:
