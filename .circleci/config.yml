@@ -25,7 +25,6 @@ jobs:
                 command: |
                     make lint 
 
-
     build-docker-image:
         docker:
             # Use the same Docker base as the project 
@@ -67,19 +66,51 @@ jobs:
                 docker login -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD"
                 docker tag "capstone" $DOCKERHUB_USERNAME/"capstone":stable
                 docker push $DOCKERHUB_USERNAME/"capstone":stable  
-# jobs:
+                
+    #   deployment:
+    #     jobs:
+    #       - aws-eks/create-cluster:
+    #           cluster-name: capstone-cluster
+    #       - test-cluster:
+    #           cluster-name: capstone-cluster
+    #           requires:
+    #             - aws-eks/create-cluster
+    #       - aws-eks/delete-cluster:
+    #           cluster-name: capstone-cluster
+    #           requires:
+    #             - test-cluster
+
+    # test-cluster:
+    #     docker:
+    #       - image: cimg/python:3.10
+    #     steps:
+    #       - kubernetes/install:
+    #             kubectl-version: v1.22.0
+    #       - aws-eks/update-kubeconfig-with-authenticator:
+    #             cluster-name: capstone-cluster
+    #       - run:
+    #             command: |
+    #                 kubectl get services
+
+
     test-cluster:
         docker:
-          - image: cimg/python:3.10
+          - image: 'cimg/python:3.10'
+        parameters:
+          cluster-name:
+            description: |
+              Capstone cluster
+            type: string
         steps:
           - kubernetes/install:
-                kubectl-version: v1.22.0
+              kubectl-version: v1.22.0
           - aws-eks/update-kubeconfig-with-authenticator:
-                cluster-name: capstone-cluster
+              cluster-name: capstone-cluster
           - run:
-                command: |
-                    kubectl get services
-                # name: capstone-cluster
+              command: |
+                kubectl get services
+              name: Test cluster
+          
           
     deploy-cluster:
         docker:
@@ -98,29 +129,31 @@ jobs:
               
               
 workflows:
-    hadolint:
+    # hadolint:
+    #     jobs:
+    #       - lint
+    deployment:
         jobs:
           - lint
           - build-docker-image:
                 requires: [lint]
           - upload-docker:
                 requires: [build-docker-image]
+          - aws-eks/create-cluster:
+                cluster-name: capstone-cluster
           - test-cluster:
-                requires: [upload-docker]
+                cluster-name: capstone-cluster
+                requires:
+                    - aws-eks/create-cluster
+    #   - aws-eks/delete-cluster:
+    #       cluster-name: capstone-cluster
+    #       requires:
+    #         - test-cluster
+    #       - test-cluster:
+    #             requires: [upload-docker]
           - deploy-cluster:
                 requires: [test-cluster]
                 
             
             
-#   deployment:
-#     jobs:
-#       - aws-eks/create-cluster:
-#           cluster-name: capstone-cluster
-#       - test-cluster:
-#           cluster-name: capstone-cluster-test
-#           requires:
-#             - aws-eks/create-cluster
-#       - aws-eks/delete-cluster:
-#           cluster-name: capstone-cluster-test
-#           requires:
-#             - test-cluster
+
