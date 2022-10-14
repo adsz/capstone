@@ -87,7 +87,7 @@ jobs:
 #           name: Test cluster
     deploy-cluster:
         docker:
-          - image: 'cimg/python:3.10'
+          - image: cimg/python:3.10
         steps:
           - checkout
           - kubernetes/install-kubectl
@@ -98,6 +98,7 @@ jobs:
               resource-file-path: k8s_deployment.yml
               resource-name: capstone
               show-kubectl-command: true
+              
 workflows:
     hadolint:
       jobs:
@@ -107,6 +108,7 @@ workflows:
             requires: [build-docker-image]
         -deploy-cluster:
             requires: [upload-docker]
+            
 #   deployment:
 #     jobs:
 #       - aws-eks/create-cluster:
