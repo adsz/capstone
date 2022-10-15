@@ -143,8 +143,8 @@ workflows:
         #         cluster-name: capstone-cluster
           - test-cluster:
                 cluster-name: capstone-cluster
-                requires:
-                    - aws-eks/create-cluster
+                # requires:
+                #     - aws-eks/create-cluster
     #   - aws-eks/delete-cluster:
     #       cluster-name: capstone-cluster
     #       requires:
