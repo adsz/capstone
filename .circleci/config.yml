@@ -123,7 +123,7 @@ jobs:
           - kubernetes/create-or-update-resource:
                 get-rollout-status: true
                 resource-file-path: k8s_deployment.yml
-                resource-name: capstone
+                resource-name: deployment/capstone
                 show-kubectl-command: true
               
               
@@ -139,8 +139,8 @@ workflows:
                 requires: [lint]
           - upload-docker:
                 requires: [build-docker-image]
-          - aws-eks/create-cluster:
-                cluster-name: capstone-cluster
+        #   - aws-eks/create-cluster:
+        #         cluster-name: capstone-cluster
           - test-cluster:
                 cluster-name: capstone-cluster
                 requires:
